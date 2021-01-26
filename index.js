@@ -49,7 +49,7 @@ try {
     child_process.execSync('ssh-add -l', { stdio: 'inherit' });
 
 //    if(fs.existsSync('/.dockerenv') && child_process.execFileSync('id', ['-u']).toString().trim() === '0') {
-//        console.log(`TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT`);
+        console.log(`TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT`);
         fs.mkdirSync('/root/.ssh', { recursive: true});
         fs.copyFileSync(`${homeSsh}/known_hosts`, '/root/.ssh/known_hosts');
 //    }

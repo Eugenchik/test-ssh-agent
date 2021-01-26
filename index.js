@@ -44,15 +44,16 @@ try {
     privateKey.split(/(?=-----BEGIN)/).forEach(function(key) {
         child_process.execSync('ssh-add -', { input: key.trim() + "\n" });
     });
+    //    if(fs.existsSync('/.dockerenv') && child_process.execFileSync('id', ['-u']).toString().trim() === '0') {
+            console.log("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT");
+            fs.mkdirSync('/root/.ssh', { recursive: true});
+            fs.copyFileSync(`${homeSsh}/known_hosts`, '/root/.ssh/known_hosts');
+    //    }
 
     console.log("Keys added:");
     child_process.execSync('ssh-add -l', { stdio: 'inherit' });
 
-//    if(fs.existsSync('/.dockerenv') && child_process.execFileSync('id', ['-u']).toString().trim() === '0') {
-        console.log("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT");
-        fs.mkdirSync('/root/.ssh', { recursive: true});
-        fs.copyFileSync(`${homeSsh}/known_hosts`, '/root/.ssh/known_hosts');
-//    }
+
 } catch (error) {
     core.setFailed(error.message);
 }
